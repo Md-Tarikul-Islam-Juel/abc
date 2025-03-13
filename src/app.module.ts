@@ -15,9 +15,8 @@ import { XyzModule } from './xyz/xyz.module';
     XyzModule,
   ],
   providers: [
-    XyzService,
   ],
-  controllers: [XyzController],
+  controllers: [],
 })
 export class AppModule {
 }
