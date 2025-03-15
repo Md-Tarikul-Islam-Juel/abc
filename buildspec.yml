@@ -1,18 +1,14 @@
 version: 0.2
-
 phases:
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
-      - echo "Installing dependencies..."
+      - echo "Installing Node.js and dependencies..."
+      - npm install -g @nestjs/cli  # <-- Add this line
       - npm install
-      - echo "Installing Nest CLI globally..."
-      - npm install -g @nestjs/cli
   build:
     commands:
       - echo "Building the application..."
-      - npm run build
+      - nest build  # Now works because CLI is installed
   post_build:
     commands:
       - echo "Packaging build artifacts..."
