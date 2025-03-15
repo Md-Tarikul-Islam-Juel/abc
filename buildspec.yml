@@ -8,7 +8,7 @@ phases:
       - npm install
   build:
     commands:
-      - nest build
+      - npm run build
   post_build:
     commands:
       - echo "Packaging artifacts..."
