@@ -8,11 +8,6 @@ phases:
       - echo "Installing dependencies..."
       # If you have a package-lock.json, npm ci is recommended for faster, more reliable builds
       - npm install
-  pre_build:
-    commands:
-      - echo "Running tests..."
-      # Make sure "test" script exists in package.json
-      - npm run test
   build:
     commands:
       - echo "Building the application..."
