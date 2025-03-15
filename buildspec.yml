@@ -6,18 +6,16 @@ phases:
       nodejs: 18
     commands:
       - echo "Installing dependencies..."
-      # If you have a package-lock.json, npm ci is recommended for faster, more reliable builds
       - npm install
+      - echo "Installing Nest CLI globally..."
+      - npm install -g @nestjs/cli
   build:
     commands:
       - echo "Building the application..."
-      # Make sure "build" script exists in package.json
       - npm run build
   post_build:
     commands:
       - echo "Packaging build artifacts..."
-      # Ensure dist folder exists after npm run build
-      # Also confirm package.json & package-lock.json exist
       - zip -r build_output.zip dist package.json package-lock.json
 artifacts:
   files:
