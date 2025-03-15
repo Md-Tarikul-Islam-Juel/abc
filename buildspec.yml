@@ -1,18 +1,18 @@
 version: 0.2
 phases:
   install:
+    runtime-versions:
+      nodejs: 20
     commands:
-      - echo "Installing Node.js and dependencies..."
-      - npm install -g @nestjs/cli  # <-- Add this line
+      - npm install -g @nestjs/cli
       - npm install
   build:
     commands:
-      - echo "Building the application..."
-      - nest build  # Now works because CLI is installed
+      - nest build
   post_build:
     commands:
-      - echo "Packaging build artifacts..."
-      - zip -r build_output.zip dist package.json package-lock.json
+      - echo "Packaging artifacts..."
+      - zip -r build_output.zip dist package*.json
 artifacts:
   files:
     - build_output.zip
