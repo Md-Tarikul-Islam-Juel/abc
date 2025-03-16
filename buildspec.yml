@@ -15,8 +15,9 @@ phases:
     commands:
       - echo "Packaging artifacts..."
       - zip -r build_output.zip dist package*.json
-
+      - echo "Uploading artifact to S3 with fixed key..."
+      - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/seenyor-backend-1-pi/build_outp/build_output.zip
 artifacts:
   files:
-    - '**/*'
-  base-directory: 'dist'
+    - build_output.zip
+  # Note: The artifact section here is used for CodePipeline’s integration.
