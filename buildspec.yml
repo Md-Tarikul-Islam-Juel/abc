@@ -18,6 +18,5 @@ phases:
 
 artifacts:
   files:
-    - build_output.zip
-  discard-paths: yes
-  name: build_output.zip
+    - '**/*'
+  base-directory: 'dist'
