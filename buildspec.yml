@@ -10,9 +10,12 @@ phases:
       - echo "Installing dependencies..."
       - npm install -g @nestjs/cli
       - npm install
-      - npm install --save-dev @types/node
+      - npm install --save-dev @types/node  # ✅ Ensure @types/node is installed
   build:
     commands:
+      - echo "Verifying installed TypeScript types..."
+      - ls -lah node_modules/@types/node  # ✅ Debug step
+      - cat tsconfig.json  # ✅ Debug step
       - echo "Building the application..."
       - npm run build
   post_build:
