@@ -10,6 +10,7 @@ phases:
       - echo "Installing dependencies..."
       - npm install -g @nestjs/cli
       - npm install
+      - npm install --save-dev @types/node
   build:
     commands:
       - echo "Building the application..."
