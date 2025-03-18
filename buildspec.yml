@@ -8,7 +8,6 @@ phases:
       - export NODE_ENV=development
       - npm install -g @nestjs/cli
       - npm install
-      - if [ -d scripts ]; then chmod +x scripts/*.sh; else echo "scripts folder not found"; fi
   build:
     commands:
       - npm run build
@@ -22,5 +21,3 @@ phases:
 artifacts:
   files:
     - build_output.zip
-    - appspec.yml
-    - scripts/**/*
