@@ -5,7 +5,7 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
-      - export NODE_ENV=production
+      - export NODE_ENV=development
       - npm install -g @nestjs/cli
       - npm install
   build:
