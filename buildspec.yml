@@ -14,7 +14,7 @@ phases:
   post_build:
     commands:
       - echo "Packaging artifacts..."
-      - chmod +x scripts/restart.sh
+      - chmod +x scripts/restart.sh  # Ensure restart script is executable
       - zip -r build_output.zip dist package*.json appspec.yml scripts/
       - echo "Uploading artifact to S3..."
       - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
