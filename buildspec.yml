@@ -5,26 +5,20 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
+      - export NODE_ENV=development
       - npm install -g @nestjs/cli
       - npm install
   build:
     commands:
       - npm run build
+
   post_build:
     commands:
       - echo "Packaging artifacts..."
-      - chmod +x scripts/restart.sh  # Ensure restart script is executable
-      - cp appspec.yml dist/  # Ensure appspec.yml is inside the zip
-      - zip -r build_output.zip dist package*.json appspec.yml scripts/
+      - chmod +x scripts/restart.sh
+      - zip -r build_output.zip .  # Zip everything including `appspec.yml`
       - echo "Uploading artifact to S3..."
       - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
-
-      # Trigger AWS CodeDeploy Deployment
-      - echo "Starting deployment with CodeDeploy..."
-      - aws deploy create-deployment \
-        --application-name seenyor-backend-1-codedeploy-app \
-        --deployment-group-name seenyor-backend-1-deployment-group \
-        --s3-location bucket=seenyor-backend-1-pipeline-bucket,key=build_output/build_output.zip,bundleType=zip
 
 artifacts:
   files:
