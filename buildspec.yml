@@ -8,7 +8,7 @@ phases:
       - export NODE_ENV=development
       - npm install -g @nestjs/cli
       - npm install
-      - chmod +x scripts/*.sh
+      - if [ -d scripts ]; then chmod +x scripts/*.sh; fi
   build:
     commands:
       - npm run build
