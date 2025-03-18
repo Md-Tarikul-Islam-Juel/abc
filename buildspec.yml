@@ -14,8 +14,7 @@ phases:
   post_build:
     commands:
       - echo "Packaging artifacts..."
-      - cp appspec.yml .
-      - zip -r build_output.zip dist package*.json appspec.yml
+      - zip -r build_output.zip dist package*.json
       - echo "Uploading artifact to S3 with fixed key..."
       - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
 
