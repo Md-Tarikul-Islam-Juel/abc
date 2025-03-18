@@ -5,17 +5,21 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
-      - export NODE_ENV=development
+      - echo "Setting environment variables..."
+      - export NODE_ENV=production
+      - echo "Installing dependencies..."
       - npm install -g @nestjs/cli
       - npm install
   build:
     commands:
+      - echo "Building the application..."
       - npm run build
   post_build:
     commands:
       - echo "Packaging artifacts..."
-      - zip -r build_output.zip dist package*.json appspec.yml scripts/restart.sh
-      - echo "Uploading artifact to S3 with fixed key..."
+      - chmod +x scripts/restart.sh
+      - zip -r build_output.zip dist package*.json appspec.yml scripts/
+      - echo "Uploading artifact to S3..."
       - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
 
 artifacts:
