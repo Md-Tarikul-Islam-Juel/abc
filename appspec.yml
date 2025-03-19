@@ -40,4 +40,3 @@ hooks:
   AfterInstall:
     - location: scripts/restart.sh
       timeout: 300
-      runas: ubuntu
