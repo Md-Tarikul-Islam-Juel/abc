@@ -104,7 +104,7 @@ echo "→ Saving PM2 process list"
 sudo -u ubuntu pm2 save
 
 echo "→ Configuring PM2 to restart on boot"
-sudo -u ubuntu pm2 startup systemd --hp /home/ubuntu
+sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
 
 echo "→ Cleaning up artifact ZIP"
 rm -f "$NEW_DIR/build_output.zip"
