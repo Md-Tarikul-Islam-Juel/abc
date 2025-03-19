@@ -1,4 +1,4 @@
-version: 0.0
+version: 0.2
 os: linux
 files:
   - source: .
@@ -9,6 +9,10 @@ permissions:
     group: ubuntu
     mode: 755
 hooks:
+  BeforeInstall:
+    - location: scripts/npm_install.sh
+      timeout: 300
+      runas: ubuntu
   AfterInstall:
     - location: scripts/restart.sh
       timeout: 300
