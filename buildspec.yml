@@ -14,6 +14,7 @@ phases:
   post_build:
     commands:
       - echo "Packaging artifacts..."
+      - chmod +x scripts/clean.sh
       - chmod +x scripts/restart.sh
       - zip -r build_output.zip appspec.yml dist/ package*.json scripts/
       - echo "Uploading artifact to S3..."
