@@ -1,23 +1,24 @@
 #!/bin/bash
 set -ex
 
-echo "Restarting the NestJS application..."
+export HOME=/home/ubuntu
+export NODE_ENV=production
 
+echo "Navigating to app directory..."
 cd /home/ubuntu/app
 
-# Fix permissions to avoid access issues
-sudo chown -R ubuntu:ubuntu /home/ubuntu/app
-sudo chmod -R 755 /home/ubuntu/app
+echo "Installing dependencies..."
+npm install --production
 
-# Stop and remove old PM2 process
-sudo -u ubuntu pm2 stop nestjs-app || true
-sudo -u ubuntu pm2 delete nestjs-app || true
+echo "Stopping existing PM2 process..."
+pm2 stop nestjs-app || true
+pm2 delete nestjs-app || true
 
-# Start new application instance
-sudo -u ubuntu pm2 start dist/main.js --name nestjs-app --watch --time
+echo "Starting application..."
+pm2 start dist/main.js --name nestjs-app --watch
 
-# Save PM2 process list and configure auto-start on reboot
-sudo -u ubuntu pm2 save
-sudo -u ubuntu pm2 startup systemd -u ubuntu --hp /home/ubuntu
+echo "Saving PM2 configuration..."
+pm2 save
 
-echo "Application restarted successfully."
+echo "Setting up startup script..."
+pm2 startup systemd -u ubuntu --hp /home/ubuntu

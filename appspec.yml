@@ -1,12 +1,16 @@
 version: 0.2
 os: linux
 files:
-  - source: .
+  - source: /
     destination: /home/ubuntu/app
 permissions:
   - object: /home/ubuntu/app
     owner: ubuntu
     group: ubuntu
+    mode: 755
+  - object: /home/ubuntu/app/scripts/restart.sh
+    mode: 755
+  - object: /home/ubuntu/app/scripts/download_artifact.sh
     mode: 755
 hooks:
   BeforeInstall:
