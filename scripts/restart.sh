@@ -28,7 +28,7 @@
 set -ex
 
 export HOME=/home/ubuntu
-export NODE_ENV=production
+export NODE_ENV=development
 
 echo "Navigating to app directory..."
 cd /home/ubuntu/app
