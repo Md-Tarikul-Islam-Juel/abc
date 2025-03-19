@@ -34,7 +34,7 @@ echo "Navigating to app directory..."
 cd /home/ubuntu/app
 
 echo "Downloading latest artifact from S3..."
-aws s3 cp s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip .
+aws s3 cp s3://seenyor-backend-2-pipeline-bucket/build_output/build_output.zip .
 
 echo "Unpacking artifact..."
 unzip -o build_output.zip -d /home/ubuntu/app
