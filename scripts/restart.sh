@@ -82,10 +82,10 @@ aws s3 cp s3://seenyor-backend-2-pipeline-bucket/build_output/build_output.zip "
 echo "→ Unpacking artifact"
 unzip -o "$NEW_DIR/build_output.zip" -d "$NEW_DIR"
 
-echo "→ Fix ownership"
+echo "→ Fix ownership of release directory"
 chown -R ubuntu:ubuntu "$NEW_DIR"
 
-echo "→ Installing deps"
+echo "→ Installing dependencies as ubuntu"
 cd "$NEW_DIR"
 sudo -u ubuntu npm install --production
 
@@ -97,11 +97,16 @@ sudo -u ubuntu pm2 start "$NEW_DIR/dist/main.js" --name nestjs-app --watch
 echo "→ Updating current symlink"
 ln -sfn "$NEW_DIR" /home/ubuntu/app/current
 
-echo "→ Saving PM2 config"
+echo "→ Fix ownership of PM2 runtime files"
+chown -R ubuntu:ubuntu /home/ubuntu/.pm2
+
+echo "→ Saving PM2 process list"
 sudo -u ubuntu pm2 save
+
+echo "→ Configuring PM2 to restart on boot"
 sudo -u ubuntu pm2 startup systemd --hp /home/ubuntu
 
-echo "→ Cleaning up ZIP"
+echo "→ Cleaning up artifact ZIP"
 rm -f "$NEW_DIR/build_output.zip"
 
 echo "→ Done deploying release $TIMESTAMP"
