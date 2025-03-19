@@ -1,27 +1,27 @@
-version: 0.0
-
-phases:
-  install:
-    runtime-versions:
-      nodejs: 20
-    commands:
-      - export NODE_ENV=development
-      - npm install -g @nestjs/cli
-      - npm install
-  build:
-    commands:
-      - npm run build
-  post_build:
-    commands:
-      - echo "Packaging artifacts..."
-      - chmod +x scripts/restart.sh
-      - zip -r build_output.zip dist package*.json appspec.yml scripts/
-      - echo "Uploading artifact to S3..."
-      - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
-
-artifacts:
-  files:
-    - build_output.zip
+#version: 0.0
+#
+#phases:
+#  install:
+#    runtime-versions:
+#      nodejs: 20
+#    commands:
+#      - export NODE_ENV=development
+#      - npm install -g @nestjs/cli
+#      - npm install
+#  build:
+#    commands:
+#      - npm run build
+#  post_build:
+#    commands:
+#      - echo "Packaging artifacts..."
+#      - chmod +x scripts/restart.sh
+#      - zip -r build_output.zip dist package*.json appspec.yml scripts/
+#      - echo "Uploading artifact to S3..."
+#      - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
+#
+#artifacts:
+#  files:
+#    - build_output.zip
 
 
 #version: 0.2
@@ -54,3 +54,34 @@ artifacts:
 #    - package*.json
 #  discard-paths: no
 #
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - export NODE_ENV=development
+      - npm install -g @nestjs/cli
+      - npm install
+
+  build:
+    commands:
+      - npm run build
+
+  post_build:
+    commands:
+      - echo "Packaging artifacts..."
+      - chmod +x scripts/clean.sh scripts/restart.sh
+      - zip -r build_output.zip dist package*.json appspec.yml scripts/
+      - echo "Uploading artifact to S3..."
+      - aws s3 cp build_output.zip s3://seenyor-backend-1-pipeline-bucket/build_output/build_output.zip
+
+artifacts:
+  files:
+    - appspec.yml
+    - scripts/**
+    - dist/**
+    - package*.json
+  discard-paths: no
