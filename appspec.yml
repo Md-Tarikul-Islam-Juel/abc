@@ -10,7 +10,7 @@ permissions:
     mode: 755
 hooks:
   BeforeInstall:
-    - location: scripts/npm_install.sh
+    - location: scripts/download_artifact.sh
       timeout: 300
       runas: ubuntu
   AfterInstall:
