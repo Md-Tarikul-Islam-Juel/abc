@@ -27,10 +27,10 @@
 version: 0.0
 os: linux
 
-files:
-  - source: /
-    destination: /home/ubuntu/app
-    overwrite: true
+#files:
+#  - source: /
+#    destination: /home/ubuntu/app
+#    overwrite: true
 
 hooks:
 #  BeforeInstall:
