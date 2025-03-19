@@ -1,64 +1,10 @@
-#version: 0.0
-#os: linux
-#files:
-#  - source: /
-#    destination: /home/ubuntu/app
-#    overwrite: true
-#permissions:
-#  - object: /home/ubuntu/app
-#    owner: ubuntu
-#    group: ubuntu
-#    mode: 755
-#  - object: /home/ubuntu/app/scripts/restart.sh
-#    mode: 755
-#  - object: /home/ubuntu/app/scripts/download_artifact.sh
-#    mode: 755
-#hooks:
-#  BeforeInstall:
-#    - location: scripts/download_artifact.sh
-#      timeout: 300
-#      runas: ubuntu
-#  AfterInstall:
-#    - location: scripts/restart.sh
-#      timeout: 300
-#      runas: ubuntu
-
 
 version: 0.0
 os: linux
 
-#files:
-#  - source: /
-#    destination: /home/ubuntu/app
-#    overwrite: true
-
 hooks:
-#  BeforeInstall:
-#    - location: scripts/clean.sh
-#      timeout: 300
-#      runas: root
   AfterInstall:
     - location: scripts/restart.sh
       timeout: 300
       runas: root
 
-
-
-#===========backup 1 ===============
-#version: 0.0
-#os: linux
-#
-#files:
-#  - source: /
-#    destination: /home/ubuntu/app
-#    overwrite: true
-#
-#hooks:
-#  BeforeInstall:
-#    - location: scripts/clean.sh
-#      timeout: 300
-#      runas: root
-#  AfterInstall:
-#    - location: scripts/restart.sh
-#      timeout: 300
-#      runas: root
