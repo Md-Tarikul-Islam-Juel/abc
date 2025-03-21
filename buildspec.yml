@@ -19,11 +19,14 @@ phases:
       - echo "Uploading artifact to S3..."
       - aws s3 cp build_output.zip s3://seenyor-backend-2-pipeline-bucket/build_output/build_output.zip
 
+#artifacts:
+#  files:
+#    - appspec.yml
+#    - scripts/**
+#    - dist/**
+#    - package*.json
+#  discard-paths: no
+
 artifacts:
   files:
-    - appspec.yml
-    - scripts/**
-    - dist/**
-    - package*.json
-  discard-paths: no
-
+    - build_output.zip
