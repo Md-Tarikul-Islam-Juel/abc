@@ -23,7 +23,8 @@ chown -R ubuntu:ubuntu "$NEW_DIR"
 
 echo "→ Installing dependencies as ubuntu"
 cd "$NEW_DIR"
-sudo -u ubuntu npm install --production
+sudo -u ubuntu npm install --omit=dev
+
 
 echo "→ Switching PM2 to new release"
 sudo -u ubuntu pm2 stop nestjs-app || true
