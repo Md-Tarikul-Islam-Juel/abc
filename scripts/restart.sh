@@ -13,7 +13,7 @@ echo "→ Creating new release dir: $NEW_DIR"
 mkdir -p "$NEW_DIR"
 
 echo "→ Downloading artifact"
-aws s3 cp s3://seenyor-backend-3-pipeline-bucket/build_output/build_output.zip "$NEW_DIR/"
+aws s3 cp s3://seenyor-backend-4-pipeline-bucket/build_output/build_output.zip "$NEW_DIR/"
 
 echo "→ Unpacking artifact"
 unzip -o "$NEW_DIR/build_output.zip" -d "$NEW_DIR"
