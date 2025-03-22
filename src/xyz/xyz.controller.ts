@@ -5,6 +5,6 @@ export class XyzController {
 
     @Get()
     getHello(): string {
-        return 'hello world 96';
+        return 'hello world 97';
     }
 }
